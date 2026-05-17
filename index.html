@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ahmed Ibrahim | Real Estate</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black:   #0d0d0d;
+      --dark:    #1a1a1a;
+      --gray:    #6b6b6b;
+      --border:  #e8e8e8;
+      --light:   #f5f5f5;
+      --white:   #ffffff;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--white);
+      color: var(--black);
+      font-family: 'Poppins', sans-serif;
+      font-weight: 400;
+      overflow-x: hidden;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+
+    /* ── NAV ──────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 0 64px;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      color: var(--black);
+    }
+    .nav-logo span { font-weight: 300; color: var(--gray); }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--gray);
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--black); }
+
+    .nav-cta {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Poppins', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 10px 24px;
+      border: 2px solid var(--black);
+      transition: background .2s, color .2s;
+      cursor: pointer;
+    }
+    .nav-cta:hover { background: var(--white); color: var(--black); }
+
+    /* ── HERO ─────────────────────────────────────── */
+    #hero {
+      margin-top: 68px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: calc(100vh - 68px);
+    }
+
+    .hero-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 64px;
+      background: var(--white);
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--light);
+      padding: 7px 16px;
+      border-radius: 2px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 28px;
+      width: fit-content;
+    }
+    .hero-tag-dot {
+      width: 7px; height: 7px;
+      background: var(--black);
+      border-radius: 50%;
+    }
+
+    .hero-title {
+      font-size: clamp(38px, 4vw, 56px);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+      color: var(--black);
+      margin-bottom: 20px;
+    }
+
+    .hero-desc {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--gray);
+      max-width: 420px;
+      margin-bottom: 44px;
+    }
+
+    .hero-actions { display: flex; gap: 14px; }
+
+    .btn-black {
+      display: inline-block;
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Poppins', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 14px 32px;
+      border: 2px solid var(--black);
+      transition: background .2s, color .2s;
+    }
+    .btn-black:hover { background: var(--white); color: var(--black); }
+
+    .btn-outline {
+      display: inline-block;
+      background: var(--white);
+      color: var(--black);
+      font-family: 'Poppins', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 14px 32px;
+      border: 2px solid var(--border);
+      transition: border-color .2s;
+    }
+    .btn-outline:hover { border-color: var(--black); }
+
+    .hero-photo {
+      background: url('https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=1200&q=80') center/cover no-repeat;
+      position: relative;
+    }
+
+    .hero-badge {
+      position: absolute;
+      bottom: 40px; left: -60px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 20px 24px;
+      min-width: 180px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+    }
+    .hero-badge-num {
+      font-size: 30px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      line-height: 1;
+    }
+    .hero-badge-label {
+      font-size: 11px;
+      color: var(--gray);
+      margin-top: 4px;
+    }
+
+    /* ── STATS BAR ────────────────────────────────── */
+    #stats {
+      background: var(--black);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .stat-item {
+      padding: 40px 48px;
+      border-right: 1px solid rgba(255,255,255,0.08);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -1px;
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 12px;
+      color: rgba(255,255,255,0.45);
+      margin-top: 6px;
+      font-weight: 300;
+    }
+
+    /* ── ABOUT ────────────────────────────────────── */
+    #about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .about-photo {
+      background: url('https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=800&q=80') top center/cover no-repeat;
+      min-height: 600px;
+    }
+
+    .about-content {
+      padding: 80px 72px;
+      background: var(--light);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .section-tag {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 700;
+      letter-spacing: -1px;
+      line-height: 1.15;
+      color: var(--black);
+    }
+
+    .section-line {
+      width: 40px; height: 3px;
+      background: var(--black);
+      margin: 22px 0;
+    }
+
+    .about-bio {
+      font-size: 14px;
+      line-height: 1.9;
+      color: var(--gray);
+      margin-bottom: 14px;
+    }
+
+    .about-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+    }
+    .about-tag {
+      padding: 7px 16px;
+      border: 1px solid var(--border);
+      background: var(--white);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--black);
+    }
+
+    /* ── LISTINGS ─────────────────────────────────── */
+    #listings {
+      padding: 100px 64px;
+      background: var(--white);
+    }
+
+    .listings-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 48px;
+    }
+
+    .listings-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .listing-card {
+      background: var(--white);
+      transition: background .2s;
+    }
+    .listing-card:hover { background: var(--light); }
+
+    .listing-img-wrap { position: relative; overflow: hidden; }
+    .listing-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      transition: transform .4s;
+    }
+    .listing-card:hover .listing-img { transform: scale(1.04); }
+
+    .listing-status {
+      position: absolute;
+      top: 16px; left: 16px;
+      background: var(--black);
+      color: var(--white);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 5px 12px;
+    }
+    .listing-status.available { background: var(--white); color: var(--black); border: 1px solid var(--border); }
+
+    .listing-body { padding: 24px; }
+    .listing-price {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: var(--black);
+      margin-bottom: 6px;
+    }
+    .listing-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--black);
+      margin-bottom: 4px;
+    }
+    .listing-location {
+      font-size: 12px;
+      color: var(--gray);
+    }
+    .listing-meta {
+      display: flex;
+      gap: 20px;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+    .listing-meta-item {
+      font-size: 12px;
+      color: var(--gray);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 500;
+    }
+    .listing-meta-item svg {
+      width: 13px; height: 13px;
+      stroke: var(--black);
+      fill: none;
+      stroke-width: 2;
+      flex-shrink: 0;
+    }
+
+    /* ── HOW IT WORKS ─────────────────────────────── */
+    #process {
+      background: var(--black);
+      padding: 100px 64px;
+    }
+    #process .section-tag { color: rgba(255,255,255,0.4); }
+    #process .section-title { color: var(--white); }
+    #process .section-line { background: var(--white); }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 56px;
+      background: rgba(255,255,255,0.06);
+    }
+
+    .process-step {
+      background: var(--black);
+      padding: 48px 44px;
+      position: relative;
+    }
+
+    .step-number {
+      font-size: 64px;
+      font-weight: 700;
+      letter-spacing: -3px;
+      color: rgba(255,255,255,0.07);
+      line-height: 1;
+      margin-bottom: 24px;
+    }
+    .step-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+    .step-desc {
+      font-size: 13px;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.45);
+      font-weight: 300;
+    }
+
+    /* ── TESTIMONIALS ─────────────────────────────── */
+    #testimonials {
+      padding: 100px 64px;
+      background: var(--light);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 56px;
+    }
+
+    .testimonial-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 36px 32px;
+    }
+
+    .t-quote {
+      font-size: 14px;
+      line-height: 1.85;
+      color: var(--dark);
+      margin-bottom: 28px;
+      font-weight: 300;
+    }
+    .t-quote::before { content: '"'; }
+    .t-quote::after { content: '"'; }
+
+    .t-author {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+    .t-avatar {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .t-name { font-size: 13px; font-weight: 600; color: var(--black); }
+    .t-role { font-size: 11px; color: var(--gray); margin-top: 2px; }
+
+    .t-stars {
+      display: flex;
+      gap: 3px;
+      margin-bottom: 16px;
+    }
+    .t-stars span { font-size: 13px; color: var(--black); }
+
+    /* ── CONTACT ──────────────────────────────────── */
+    #contact {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .contact-info {
+      background: var(--black);
+      padding: 90px 72px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .contact-info .section-tag { color: rgba(255,255,255,0.4); }
+    .contact-info .section-title { color: var(--white); }
+    .contact-info .section-line { background: var(--white); }
+
+    .contact-desc {
+      font-size: 14px;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.5);
+      font-weight: 300;
+      margin-bottom: 48px;
+    }
+
+    .contact-items { display: flex; flex-direction: column; gap: 28px; }
+    .contact-item { display: flex; align-items: flex-start; gap: 18px; }
+    .contact-item-icon {
+      width: 40px; height: 40px; flex-shrink: 0;
+      border: 1px solid rgba(255,255,255,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .contact-item-icon svg {
+      width: 16px; height: 16px;
+      stroke: var(--white);
+      fill: none;
+      stroke-width: 2;
+    }
+    .contact-item-label {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .contact-item-value { font-size: 14px; color: var(--white); }
+
+    .contact-form-wrap {
+      background: var(--white);
+      padding: 90px 72px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .form-group { margin-bottom: 14px; }
+    .form-group label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 8px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      background: var(--light);
+      border: 1px solid var(--border);
+      color: var(--black);
+      font-family: 'Poppins', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      padding: 12px 16px;
+      outline: none;
+      transition: border-color .2s;
+      resize: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--black); background: var(--white); }
+    .form-group select option { background: var(--white); }
+
+    .form-submit {
+      width: 100%;
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Poppins', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 16px;
+      border: 2px solid var(--black);
+      cursor: pointer;
+      margin-top: 6px;
+      transition: background .2s, color .2s;
+    }
+    .form-submit:hover { background: var(--white); color: var(--black); }
+
+    /* ── FOOTER ───────────────────────────────────── */
+    footer {
+      background: var(--black);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 36px 64px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-logo {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--white);
+    }
+    .footer-logo span { font-weight: 300; color: rgba(255,255,255,0.4); }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.3); }
+    .footer-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+    .footer-links a {
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+      transition: color .2s;
+    }
+    .footer-links a:hover { color: var(--white); }
+
+    /* ── FADE IN ──────────────────────────────────── */
+    .fade {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .fade.in { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">Ahmed Ibrahim <span>/ Real Estate</span></div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#listings">Listings</a></li>
+      <li><a href="#process">How It Works</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Find an Apartment</a>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-text">
+      <div class="hero-tag">
+        <div class="hero-tag-dot"></div>
+        Cairo Apartment Specialist
+      </div>
+      <h1 class="hero-title">Find Your<br>Perfect<br>Apartment.</h1>
+      <p class="hero-desc">
+        Real homes at real prices — across Cairo's most connected neighbourhoods. No hidden fees, no pressure, just honest guidance.
+      </p>
+      <div class="hero-actions">
+        <a href="#listings" class="btn-black">Browse Listings</a>
+        <a href="#about" class="btn-outline">About Ahmed</a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <div class="hero-badge">
+        <div class="hero-badge-num">200+</div>
+        <div class="hero-badge-label">Apartments Sold</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAR -->
+  <div id="stats">
+    <div class="stat-item fade">
+      <div class="stat-num">200+</div>
+      <div class="stat-label">Apartments Closed</div>
+    </div>
+    <div class="stat-item fade">
+      <div class="stat-num">8 Yrs</div>
+      <div class="stat-label">In the Market</div>
+    </div>
+    <div class="stat-item fade">
+      <div class="stat-num">96%</div>
+      <div class="stat-label">Client Satisfaction</div>
+    </div>
+    <div class="stat-item fade">
+      <div class="stat-num">12</div>
+      <div class="stat-label">Cairo Districts Covered</div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-photo"></div>
+    <div class="about-content">
+      <p class="section-tag">Your Agent</p>
+      <h2 class="section-title">Ahmed<br>Ibrahim</h2>
+      <div class="section-line"></div>
+      <p class="about-bio">
+        Ahmed has been helping Cairo families find their homes for 8 years. His focus is simple: match real people to real apartments without the runaround. He knows the buildings, the landlords, the price history, and the neighbourhoods — so you don't have to.
+      </p>
+      <p class="about-bio">
+        Whether you're buying your first apartment, upsizing for a growing family, or investing in a rental unit, Ahmed gives you straight answers and stays with you through every step of the process.
+      </p>
+      <div class="about-tags">
+        <span class="about-tag">Nasr City</span>
+        <span class="about-tag">Maadi</span>
+        <span class="about-tag">Heliopolis</span>
+        <span class="about-tag">Zamalek</span>
+        <span class="about-tag">New Cairo</span>
+        <span class="about-tag">Obour</span>
+        <span class="about-tag">Shorouk</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- LISTINGS -->
+  <section id="listings">
+    <div class="listings-header fade">
+      <div>
+        <p class="section-tag">Current Listings</p>
+        <h2 class="section-title">Available Apartments</h2>
+      </div>
+      <a href="#contact" class="btn-outline">See All Listings</a>
+    </div>
+    <div class="listings-grid fade">
+
+      <!-- Card 1 -->
+      <div class="listing-card">
+        <div class="listing-img-wrap">
+          <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&q=80" alt="Apartment Nasr City" class="listing-img">
+          <span class="listing-status">For Sale</span>
+        </div>
+        <div class="listing-body">
+          <div class="listing-price">EGP 2,850,000</div>
+          <div class="listing-name">3-Bedroom Apartment</div>
+          <div class="listing-location">Nasr City, Cairo</div>
+          <div class="listing-meta">
+            <div class="listing-meta-item">
+              <svg viewBox="0 0 24 24"><path d="M2 3h20v18H2z"/><path d="M8 21V3"/></svg>3 Beds
+            </div>
+            <div class="listing-meta-item">
+              <svg viewBox="0 0 24 24"><path d="M9 6 6.5 3.5a1.5 1.5 0 00-1-.5C4.683 3 4 3.683 4 4.5V17a2 2 0 002 2h12a2 2 0 002-2v-5"/></svg>2 Baths
+            </div>
+            <div class="listing-meta-item">
+              <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="1"/></svg>145 m²
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="listing-card">
+        <div class="listing-img-wrap">
+          <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80" alt="Apartment Maadi" class="listing-img">
+          <span class="listing-status available">For Rent</span>
+        </div>
+        <div class="listing-body">
+          <div class="listing-price">EGP 18,000 / mo</div>
+          <div class="listing-name">2-Bedroom Furnished Flat</div>
+          <div class="listing-location">Maadi, Cairo</div>
+          <div class="listing-meta">
+            <div class="listing-meta-item">
+              <svg viewBox="0 0 24 24"><path d="M2 3h20v18H2z"/><path d="M8 21V3"/></svg>2 Beds
+            </div>
+            <div class="listing-meta-item">
+              <svg viewBox="0 0 24 24"><path d="M9 6 6.5 3.5a1.5 1.5 0 00-1-.5C4.683 3 4 3.683 4 4.5V17a2 2 0 002 2h12a2 2 0 002-2v-5"/></svg>1 Bath
+            </div>
+            <div class="listing-meta-item">
+              <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="1"/></svg>110 m²
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="listing-card">
+        <div class="listing-img-wrap">
+          <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800&q=80" alt="Apartment Heliopolis" class="listing-img">
+          <span class="listing-status">For Sale</span>
+        </div>
+        <div class="listing-body">
+          <div class="listing-price">EGP 4,200,000</div>
+          <div class="listing-name">4-Bedroom Apartment</div>
+          <div class="listing-location">Heliopolis, Cairo</div>
+          <div class="listing-meta">
+            <div class="listing-meta-item">
+              <svg viewBox="0 0 24 24"><path d="M2 3h20v18H2z"/><path d="M8 21V3"/></svg>4 Beds
+            </div>
+            <div class="listing-meta-item">
+              <svg viewBox="0 0 24 24"><path d="M9 6 6.5 3.5a1.5 1.5 0 00-1-.5C4.683 3 4 3.683 4 4.5V17a2 2 0 002 2h12a2 2 0 002-2v-5"/></svg>2 Baths
+            </div>
+            <div class="listing-meta-item">
+              <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="1"/></svg>185 m²
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="process">
+    <p class="section-tag">The Process</p>
+    <h2 class="section-title">How It Works</h2>
+    <div class="section-line" style="background:white; margin-top:22px;"></div>
+    <div class="process-grid">
+      <div class="process-step fade">
+        <div class="step-number">01</div>
+        <h3 class="step-title">Tell Me What You Need</h3>
+        <p class="step-desc">A quick call or message is all it takes. Tell me your budget, preferred area, and how many rooms. I'll take it from there.</p>
+      </div>
+      <div class="process-step fade">
+        <div class="step-number">02</div>
+        <h3 class="step-title">I Find the Right Options</h3>
+        <p class="step-desc">I'll shortlist real apartments that match your needs — no time-wasters, no properties outside your budget. Just suitable options.</p>
+      </div>
+      <div class="process-step fade">
+        <div class="step-number">03</div>
+        <h3 class="step-title">Move In With Confidence</h3>
+        <p class="step-desc">I handle the paperwork, negotiate on your behalf, and stay with you through handover. You move in knowing everything is in order.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials">
+    <p class="section-tag">What Clients Say</p>
+    <h2 class="section-title">Honest Reviews</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card fade">
+        <div class="t-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <p class="t-quote">Ahmed found us a 3-bedroom in Nasr City within our exact budget in under two weeks. He was straightforward the whole time — no games, no pressure.</p>
+        <div class="t-author">
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&q=80" alt="Client" class="t-avatar">
+          <div>
+            <div class="t-name">Sara & Mohamed Kamal</div>
+            <div class="t-role">First-time buyers, Nasr City</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card fade">
+        <div class="t-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <p class="t-quote">I've rented three apartments through Ahmed over five years. He always comes back with real options, not inflated listings. Completely reliable.</p>
+        <div class="t-author">
+          <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=100&q=80" alt="Client" class="t-avatar">
+          <div>
+            <div class="t-name">Omar Fathy</div>
+            <div class="t-role">Repeat client, Maadi</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card fade">
+        <div class="t-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <p class="t-quote">We were moving back to Cairo after years abroad and had no idea where to start. Ahmed walked us through everything and helped us find a great place in Heliopolis.</p>
+        <div class="t-author">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80" alt="Client" class="t-avatar">
+          <div>
+            <div class="t-name">Hisham & Rania Nour</div>
+            <div class="t-role">Returned expats, Heliopolis</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-info">
+      <p class="section-tag">Get In Touch</p>
+      <h2 class="section-title">Let's Find<br>Your Apartment</h2>
+      <div class="section-line" style="background:white;"></div>
+      <p class="contact-desc">Tell me what you're looking for and I'll get back to you within a few hours with real options.</p>
+      <div class="contact-items">
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.8a19.79 19.79 0 01-3.07-8.63A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">Phone</div>
+            <div class="contact-item-value">01002584512</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">Email</div>
+            <div class="contact-item-value">a.ibrahim@ahmedibrahimre.com</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">Office</div>
+            <div class="contact-item-value">Mostafa El-Nahas St., Nasr City<br>Cairo, Egypt</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form-wrap">
+      <form>
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" placeholder="Ahmed">
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" placeholder="Hassan">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Phone</label>
+          <input type="tel" placeholder="+20 1XX XXX XXXX">
+        </div>
+        <div class="form-group">
+          <label>I'm Looking To</label>
+          <select>
+            <option>Buy an Apartment</option>
+            <option>Rent an Apartment</option>
+            <option>Sell My Apartment</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Budget (EGP)</label>
+          <select>
+            <option>Under 2,000,000</option>
+            <option>2,000,000 – 4,000,000</option>
+            <option>4,000,000 – 7,000,000</option>
+            <option>Above 7,000,000</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Message (optional)</label>
+          <textarea rows="3" placeholder="Preferred area, number of rooms, anything else…"></textarea>
+        </div>
+        <button type="submit" class="form-submit">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Ahmed Ibrahim <span>/ Real Estate</span></div>
+    <p class="footer-copy">© 2025 Ahmed Ibrahim Real Estate. All rights reserved.</p>
+    <ul class="footer-links">
+      <li><a href="#listings">Listings</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
